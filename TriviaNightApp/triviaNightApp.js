@@ -99,6 +99,7 @@ function getNewQuestions(){
 function resetGame(){
     _clear();
     points = 0;
+    document.getElementById("points").innerHTML = `${points} points`;
 }
 
 
