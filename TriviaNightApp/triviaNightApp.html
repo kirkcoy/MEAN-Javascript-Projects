@@ -19,55 +19,161 @@
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-    <link rel="stylesheet" type="text/css" media="screen" href="triviaNight.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="triviaNightApp.css" />
 
-    <script src="triviaNight.js"></script>
+    <script src="triviaNightApp.js"></script>
     <title>Trivia Night</title>
 </head>
 
-<body>
-    <div class="container">
+<body class="text-white bg-dark">
+    <div class="container text-center">
 
-        <div class="row">
+        <div class="mb-3 row">
             <div class="col my-auto text-left">
-                <button type="button" class="btn btn-primary">Continue with new questions</button>
+                <button onclick="getNewQuestions()" type="button" class="btn btn-outline-primary">Continue with new questions</button>
             </div>
             <div class="col text-center">
-                <h1>Trivia Night</h1>
+                <h1 class="font-weight-bold">Trivia Night</h1>
             </div>
             <div class="col my-auto text-right">
-                <h3 id="points" class="text-danger">0 Points</h3>
+                <h3 id="points" class="text-warning">0 points</h3>
             </div>
         </div>
 
-
-        <div class="row text-center my-auto">
+        <div class="row my-auto ">
             <div class="col">
-                <h2 class="p-3 mb-2 bg-warning text-dark">Geography</h2>
-                <div id="100geography" class="p-3 mb-2 bg-success text-white border"><h2>100</h2></div>
-                <div id="200geography" class="p-3 mb-2 bg-secondary text-white border"><h2>200</h2></div>
-                <div id="300geography" class="p-3 mb-2 bg-success text-white border"><h2>300</h2></div>
+                <h2 class="p-3 mb-2 bg-warning text-dark border">Geography</h2>
+                <div id="100geography" class="100geography p-3 mb-2 bg-success text-white border on wordwrap">
+                    <h2>100</h2>
+                </div>
+                <div id="200geography" class="200geography p-3 mb-2 bg-success text-white border on wordwrap">
+                    <h2>200</h2>
+                </div>
+                <div id="300geography" class="300geography p-3 mb-2 bg-success text-white border on wordwrap">
+                    <h2>300</h2>
+                </div>
             </div>
             <div class="col">
-                <h2 class="p-3 mb-2 bg-warning text-dark">Sports</h2>
-                <div id="100sports" class="p-3 mb-2 bg-secondary text-white border"><h2>100</h2></div>
-                <div id="200sports" class="p-3 mb-2 bg-success text-white border"><h2>200</h2></div>
-                <div id="300sports" class="p-3 mb-2 bg-secondary text-white border"><h2>300</h2></div>
+                <h2 class="p-3 mb-2 bg-warning text-dark border">Celebrities</h2>
+                <div id="100celebrities" class="100celebrities p-3 mb-2 bg-success text-white border on wordwrap">
+                    <h2>100</h2>
+                </div>
+                <div id="200celebrities" class="200celebrities p-3 mb-2 bg-success text-white border on wordwrap">
+                    <h2>200</h2>
+                </div>
+                <div id="300celebrities" class="300celebrities p-3 mb-2 bg-success text-white border on wordwrap">
+                    <h2>300</h2>
+                </div>
             </div>
             <div class="col">
-                <h2 class="p-3 mb-2 bg-warning text-dark">Vehicles</h2>
-                <div id="100vehicles" class="p-3 mb-2 bg-success text-white border"><h2>100</h2></div>
-                <div id="200vehicles" class="p-3 mb-2 bg-secondary text-white border"><h2>200</h2></div>
-                <div id="300vehicles" class="p-3 mb-2 bg-success text-white border"><h2>300</h2></div>
+                <h2 class="p-3 mb-2 bg-warning text-dark border">Vehicles</h2>
+                <div id="100vehicles" class="100vehicles p-3 mb-2 bg-success text-white border on wordwrap">
+                    <h2>100</h2>
+                </div>
+                <div id="200vehicles" class="200vehicles p-3 mb-2 bg-success text-white border on wordwrap">
+                    <h2>200</h2>
+                </div>
+                <div id="300vehicles" class="300vehicles p-3 mb-2 bg-success text-white border on wordwrap">
+                    <h2>300</h2>
+                </div>
             </div>
             <div class="col">
-                <h2 class="p-3 mb-2 bg-warning text-dark">Animals</h2>
-                <div id="100animals" class="p-3 mb-2 bg-secondary text-white border"><h2>100</h2></div>
-                <div id="200animals" class="p-3 mb-2 bg-success text-white border"><h2>200</h2></div>
-                <div id="300animals" class="p-3 mb-2 bg-secondary text-white border"><h2>300</h2></div>
+                <h2 class="p-3 mb-2 bg-warning text-dark border">Science</h2>
+                <div id="100science" class="100science p-3 mb-2 bg-success text-white border on wordwrap">
+                    <h2>100</h2>
+                </div>
+                <div id="200science" class="200science p-3 mb-2 bg-success text-white border on wordwrap">
+                    <h2>200</h2>
+                </div>
+                <div id="300science" class="300science p-3 mb-2 bg-success text-white border on wordwrap">
+                    <h2>300</h2>
+                </div>
             </div>
         </div>
+
+        <button onclick="resetGame()" type="button" class="mt-3 mb-3 btn btn-danger">Reset the Game</button>
+       <div id="alert">
+            <h2>Let the TRIVIA begin!!!</h2>
+        </div>
+
     </div>
+
+
+<!-- stop at this point================== -->
+    <!-- <div id="200geography" class="p-3 mb-2 bg-secondary text-white border">
+        <h2>200</h2>
+    </div>
+
+    <form action="/action_page.php">
+        <h4>Question: Hello </h4>
+        <ul class="list-unstyled">
+            <li>
+                <input type="radio" name="isTrue" value="isTrue"> True</li>
+            <li>
+                <input type="radio" name="isFalse" value="isFalse"> False</li>
+            <li>
+                <button type="submit" class="btn btn-secondary">Submit</button>
+            </li>
+        </ul>
+
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+            <label class="form-check-label" for="inlineRadio1">1</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+            <label class="form-check-label" for="inlineRadio2">2</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3" disabled>
+            <label class="form-check-label" for="inlineRadio3">3 (disabled)</label>
+        </div>
+
+        <fieldset class="form-group">
+            <div class="row">
+                <legend class="col-form-label col-sm-2 pt-0">Radios</legend>
+                <div class="col-sm-10">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+                        <label class="form-check-label" for="gridRadios1">
+                            First radio
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+                        <label class="form-check-label" for="gridRadios2">
+                            Second radio
+                        </label>
+                    </div>
+                    <div class="form-check disabled">
+                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option3" disabled>
+                        <label class="form-check-label" for="gridRadios3">
+                            Third disabled radio
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+
+    </form>
+
+
+    <form>
+        <div class="form-check">
+            <input id="" class="form-check-input" type="radio" name="True" value="true">
+            <h4>True</h4>
+        </div>
+        <div class="form-check">
+            <input id="" class="form-check-input" type="radio" name="False" value="false">
+           <h4>False</h4>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form> -->
+
+
+
+
+
 
 </body>
 

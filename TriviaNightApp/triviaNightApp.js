@@ -1,162 +1,230 @@
+var countDown = 0;
+var points = 0;
+var allowClick = true;
+var difficultyValue = "";
+var scoreCategoryValue = "";
+var correctAnswerValue = "";
+var questionOn = false;
+var difficulty = {
+    "easy" : 100,
+    "medium" : 200,
+    "hard" : 300
+}
+var apiCall = {
+    "100geography" : "https://opentdb.com/api.php?amount=1&category=22&difficulty=easy&type=boolean",
+    "200geography" : "https://opentdb.com/api.php?amount=1&category=22&difficulty=medium&type=boolean",
+    "300geography" : "https://opentdb.com/api.php?amount=1&category=22&difficulty=hard&type=boolean",
+
+    "100celebrities" : "https://opentdb.com/api.php?amount=1&category=26&difficulty=easy&type=boolean",
+    "200celebrities" : "https://opentdb.com/api.php?amount=1&category=26&difficulty=medium&type=boolean",
+    "300celebrities" : "https://opentdb.com/api.php?amount=1&category=26&difficulty=hard&type=boolean",
+
+    "100vehicles" : "https://opentdb.com/api.php?amount=1&category=28&difficulty=easy&type=boolean",
+    "200vehicles" : "https://opentdb.com/api.php?amount=1&category=28&difficulty=medium&type=boolean",
+    "300vehicles" : "https://opentdb.com/api.php?amount=1&category=28&difficulty=hard&type=boolean",
+
+    "100science" : "https://opentdb.com/api.php?amount=1&category=17&difficulty=easy&type=boolean",
+    "200science" : "https://opentdb.com/api.php?amount=1&category=17&difficulty=medium&type=boolean",
+    "300science" : "https://opentdb.com/api.php?amount=1&category=17&difficulty=hard&type=boolean"
+    
+}
+
 $(document).ready(function () {
-    // var info = new Promise(function (resolve, reject) {
-    //     $.get("https://api.github.com/users/kirkcoy", function(res){
-    //        resolve(res);
-    //     },"json");
-    // });
+    document.getElementById("100geography").addEventListener("click", function () {
+        _getQuestion("100geography");
+    });
 
-    // info.then(function (res) {
-    //     console.log(res, "ASynchronous");
-    //     $("#result2").text(res.name+": used promises for retrieving the data.");
-    // });
+    document.getElementById("200geography").addEventListener("click", function () {
+        _getQuestion("200geography");
+    });
 
-    // info.catch(function () {
-    //     console.log('failure');
-    // });
-    var point = 10;
-    var allowClick = true;
+    document.getElementById("300geography").addEventListener("click", function () {
+        _getQuestion("300geography");
+    });
 
 
-    document.getElementById("100geography").addEventListener("click", function (){
-        if(allowClick){
-            allowClick = false;
-            console.log(allowClick)
-            $.get("https://opentdb.com/api.php?amount=1&category=22&difficulty=easy", function (res) {
-                console.log(res, "GEO");
-                document.getElementById("100geography").innerHTML = "<div id='100geography' class='p-3 mb-2 bg-success text-white border'><h2>" + res.results[0].question; + "</h2></div>";
-                show();
-            }, "json");
-            console.log(point);
-            return false;
-        }
-    })
-    
-    document.getElementById("200geography").addEventListener("click", function (){
-        if(allowClick){
-            allowClick = false;
-            console.log(allowClick)
-            $.get("https://opentdb.com/api.php?amount=1&category=22&difficulty=medium", function (res) {
-                console.log(res, "GEO");
-                document.getElementById("200geography").innerHTML = "<div id='200geography' class='p-3 mb-2 bg-success text-white border'><h2>" + res.results[0].question; + "</h2></div>";
-                show();
-            }, "json");
-            console.log(point);
-            return false;
-        }
-    })
+    document.getElementById("100celebrities").addEventListener("click", function () {
+        _getQuestion("100celebrities");
+    });
 
-    console.log(allowClick)
-    
+    document.getElementById("200celebrities").addEventListener("click", function () {
+        _getQuestion("200celebrities");
+    });
 
+    document.getElementById("300celebrities").addEventListener("click", function () {
+        _getQuestion("300celebrities");
+    });
 
+    document.getElementById("100vehicles").addEventListener("click", function () {
+        _getQuestion("100vehicles");
+    });
 
-// <form action="/action_page.php">
-//   <input type="radio" name="gender" value="male"> Male<br>
-//   <input type="radio" name="gender" value="female"> Female<br>
-//   <input type="radio" name="gender" value="other"> Other<br>  
-//   <input type="submit" value="Submit">
-// </form>
+    document.getElementById("200vehicles").addEventListener("click", function () {
+        _getQuestion("200vehicles");
+    });
 
+    document.getElementById("300vehicles").addEventListener("click", function () {
+        _getQuestion("300vehicles");
+    });
 
+    document.getElementById("100science").addEventListener("click", function () {
+        _getQuestion("100science");
+    });
 
+    document.getElementById("200science").addEventListener("click", function () {
+        _getQuestion("200science");
+    });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-    $.get("https://opentdb.com/api.php?amount=1&category=22", displayGeography)
-    function displayGeography(data) {
-        console.log(data,"Geography")
-        if (data.results[0].type == "multiple"){
-            var correctAnswer = data.results[0].correct_answer;
-            var difficulty = data.results[0].difficulty;
-            var question = data.results[0].question;
-            var type = data.results[0].type;
-            var incorrect = data.incorrect_answers;
-            var questions
-            
-        }
-        
-        return false
-    }
-    
-
-
-    $.get("https://opentdb.com/api.php?amount=1&category=21", function (res) {
-        console.log(res, "Sports");
-    }, "json")
-
-
-    $.get("https://opentdb.com/api.php?amount=1&category=28", function (res) {
-        console.log(res, "Vehicles")
-    }, "json")
-
-
-    $.get("https://opentdb.com/api.php?amount=1&category=27", function (res) {
-        console.log(res, "Animals")
-    }, "json")
-
-
-
-
-
-
-    document.getElementById("points").addEventListener("click", function (){
-        // document.getElementById("points").innerHTML =  point + "Points"
-        console.log(point)
-    })
-
+    document.getElementById("300science").addEventListener("click", function () {
+        _getQuestion("300science");
+    });
 })
 
+// onClick Functions
 
-
-// https://opentdb.com/api.php?amount=1&category=22&difficulty=easy
-// https://opentdb.com/api.php?amount=1&category=22&difficulty=medium
-// https://opentdb.com/api.php?amount=1&category=22&difficulty=hard
-
-// https://opentdb.com/api.php?amount=1&category=21&difficulty=easy
-// https://opentdb.com/api.php?amount=1&category=21&difficulty=medium
-// https://opentdb.com/api.php?amount=1&category=21&difficulty=hard
-
-// https://opentdb.com/api.php?amount=1&category=28&difficulty=easy
-// https://opentdb.com/api.php?amount=1&category=28&difficulty=medium
-// https://opentdb.com/api.php?amount=1&category=28&difficulty=hard
-
-// https://opentdb.com/api.php?amount=1&category=27&difficulty=easy
-// https://opentdb.com/api.php?amount=1&category=27&difficulty=medium
-// https://opentdb.com/api.php?amount=1&category=27&difficulty=hard
-
-function show(){
-    console.log("show");
+function getNewQuestions(){
+    if(countDown >= 12){
+        _clear();
+    } else {
+        document.getElementById("alert").innerHTML =  
+            `<div class="alert alert-warning alert-dismissible fade show" role="alert">
+                Please answer all question before you can continue with new questions.<strong> Enjoy the game.</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>`;
+    }
 }
+
+function resetGame(){
+    _clear();
+    points = 0;
+}
+
+
+function answerTrue(){
+    if(correctAnswerValue === "True"){
+        points = points + difficulty[difficultyValue];
+        document.getElementById("points").innerHTML = `${points} points`;
+        document.getElementById(scoreCategoryValue).innerHTML = 
+            `<h4>Congratulations, your answer is correct.</h4><h4> ${correctAnswerValue} is the answer.</h4>`;
+    } else {
+        document.getElementById(scoreCategoryValue).innerHTML = 
+            `<h4>Sorry, your answer is wrong.</h4><h4>The correct answer is ${correctAnswerValue}.</h4>`;
+    }
+    _setAfterAnswer();
+}
+
+function answerFalse(){
+    if(correctAnswerValue === "False"){
+        points = points + difficulty[difficultyValue];
+        document.getElementById("points").innerHTML = `${points} points`;
+        document.getElementById(scoreCategoryValue).innerHTML = 
+            `<h4> Congratulations, your answer is correct.</h4><h4> ${correctAnswerValue} is the answer.</h4>`;
+    } else {
+        document.getElementById(scoreCategoryValue).innerHTML = 
+            `<h4>Sorry, your answer is wrong.</h4><h4>The correct answer is ${correctAnswerValue}.</h4>`;
+    }
+    _setAfterAnswer();
+}
+
+
+// Helper Functions
+
+function _getQuestion(scoreCategory){
+    if (allowClick && document.getElementById(scoreCategory).classList.contains('on')) {
+        $.get(apiCall[scoreCategory], function (res) {
+            _setDetails(scoreCategory,res);
+        }, "json");
+        return false;
+    } else if (questionOn && scoreCategoryValue != scoreCategory ){
+        _alertOneQuestion();
+    } 
+}
+
+function _findQuestion(scoreCategory,question){
+    document.getElementById(scoreCategory).innerHTML = 
+        `<h4> ${question} </h4>
+        <form style="text-align: left;">
+            <div class="form-check">
+                <input id="" class="form-check-input" type="radio" name="True" value="true" onclick="answerTrue()">
+                <h4>True</h4>
+            </div>
+            <div class="form-check">
+                <input id="" class="form-check-input" type="radio" name="False" value="false" onclick="answerFalse()">
+                <h4>False</h4>
+            </div>
+        </form>`;
+
+    document.getElementById(scoreCategory).classList.remove("bg-success");
+    document.getElementById(scoreCategory).classList.add("bg-secondary"); 
+    document.getElementById(scoreCategory).classList.remove("on");
+    document.getElementById(scoreCategory).classList.add("off"); 
+}
+
+function _clear(){
+    for(let i = 1; i<=3; i++){
+        document.getElementById(i+"00geography").innerHTML = `<h2> ${i}00 </h2>`;
+        document.getElementById(i+"00geography").classList.remove("bg-secondary");
+        document.getElementById(i+"00geography").classList.add("bg-success");
+        document.getElementById(i+"00geography").classList.remove("off");
+        document.getElementById(i+"00geography").classList.add("on"); 
+
+        document.getElementById(i+"00celebrities").innerHTML = `<h2> ${i}00 </h2>`;
+        document.getElementById(i+"00celebrities").classList.remove("bg-secondary");
+        document.getElementById(i+"00celebrities").classList.add("bg-success");
+        document.getElementById(i+"00celebrities").classList.remove("off");
+        document.getElementById(i+"00celebrities").classList.add("on"); 
+
+        document.getElementById(i+"00vehicles").innerHTML = `<h2> ${i}00 </h2>`;
+        document.getElementById(i+"00vehicles").classList.remove("bg-secondary");
+        document.getElementById(i+"00vehicles").classList.add("bg-success");
+        document.getElementById(i+"00vehicles").classList.remove("off");
+        document.getElementById(i+"00vehicles").classList.add("on"); 
+
+        document.getElementById(i+"00science").innerHTML = `<h2> ${i}00 </h2>`;
+        document.getElementById(i+"00science").classList.remove("bg-secondary");
+        document.getElementById(i+"00science").classList.add("bg-success");
+        document.getElementById(i+"00science").classList.remove("off");
+        document.getElementById(i+"00science").classList.add("on"); 
+    }
+    countDown = 0;
+    document.getElementById("alert").innerHTML = `<h2>Let the TRIVIA begin!!!</h2>`;
+    allowClick = true;
+}
+
+function _alertOneQuestion(){
+    document.getElementById("alert").innerHTML =
+    `<div class="alert alert-warning alert-dismissible fade show" role="alert">
+        Please answer the question before you can continue with other questions.<strong> Enjoy the game.</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>`
+}
+
+function _setDetails(scoreCategory, res){
+    allowClick = false;
+    difficultyValue = res.results[0].difficulty;
+    scoreCategoryValue = scoreCategory;
+    correctAnswerValue = res.results[0].correct_answer;
+    questionOn = true;
+    let type = res.results[0].type;
+    if(type === "boolean"){
+        _findQuestion(scoreCategory,res.results[0].question);
+    } else if(type === "multiple"){
+        console.log("Future Game Improvement");
+    }
+}
+
+function _setAfterAnswer(){
+    countDown++;
+    allowClick = true;
+    difficultyValue = "";
+    scoreCategoryValue = "";
+    correctAnswerValue = "";
+    questionOn = false;
+    document.getElementById("alert").innerHTML = "";
+}
+
+
