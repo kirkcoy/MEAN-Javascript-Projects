@@ -26,57 +26,12 @@ var apiCall = {
     "100science" : "https://opentdb.com/api.php?amount=1&category=17&difficulty=easy&type=boolean",
     "200science" : "https://opentdb.com/api.php?amount=1&category=17&difficulty=medium&type=boolean",
     "300science" : "https://opentdb.com/api.php?amount=1&category=17&difficulty=hard&type=boolean"
-    
 }
 
 $(document).ready(function () {
-    document.getElementById("100geography").addEventListener("click", function () {
-        _getQuestion("100geography");
-    });
-
-    document.getElementById("200geography").addEventListener("click", function () {
-        _getQuestion("200geography");
-    });
-
-    document.getElementById("300geography").addEventListener("click", function () {
-        _getQuestion("300geography");
-    });
-
-
-    document.getElementById("100celebrities").addEventListener("click", function () {
-        _getQuestion("100celebrities");
-    });
-
-    document.getElementById("200celebrities").addEventListener("click", function () {
-        _getQuestion("200celebrities");
-    });
-
-    document.getElementById("300celebrities").addEventListener("click", function () {
-        _getQuestion("300celebrities");
-    });
-
-    document.getElementById("100vehicles").addEventListener("click", function () {
-        _getQuestion("100vehicles");
-    });
-
-    document.getElementById("200vehicles").addEventListener("click", function () {
-        _getQuestion("200vehicles");
-    });
-
-    document.getElementById("300vehicles").addEventListener("click", function () {
-        _getQuestion("300vehicles");
-    });
-
-    document.getElementById("100science").addEventListener("click", function () {
-        _getQuestion("100science");
-    });
-
-    document.getElementById("200science").addEventListener("click", function () {
-        _getQuestion("200science");
-    });
-
-    document.getElementById("300science").addEventListener("click", function () {
-        _getQuestion("300science");
+    $('.clicked').click(function () {
+        let scoreCategory = $(this).attr("id");
+        _getQuestion(scoreCategory);
     });
 })
 
@@ -102,9 +57,8 @@ function resetGame(){
     document.getElementById("points").innerHTML = `${points} points`;
 }
 
-
-function answerTrue(){
-    if(correctAnswerValue === "True"){
+function answer(answer){
+    if(correctAnswerValue === answer){
         points = points + difficulty[difficultyValue];
         document.getElementById("points").innerHTML = `${points} points`;
         document.getElementById(scoreCategoryValue).innerHTML = 
@@ -115,20 +69,6 @@ function answerTrue(){
     }
     _setAfterAnswer();
 }
-
-function answerFalse(){
-    if(correctAnswerValue === "False"){
-        points = points + difficulty[difficultyValue];
-        document.getElementById("points").innerHTML = `${points} points`;
-        document.getElementById(scoreCategoryValue).innerHTML = 
-            `<h4> Congratulations, your answer is correct.</h4><h4> ${correctAnswerValue} is the answer.</h4>`;
-    } else {
-        document.getElementById(scoreCategoryValue).innerHTML = 
-            `<h4>Sorry, your answer is wrong.</h4><h4>The correct answer is ${correctAnswerValue}.</h4>`;
-    }
-    _setAfterAnswer();
-}
-
 
 // Helper Functions
 
@@ -148,47 +88,24 @@ function _findQuestion(scoreCategory,question){
         `<h4> ${question} </h4>
         <form style="text-align: left;">
             <div class="form-check">
-                <input id="" class="form-check-input" type="radio" name="True" value="true" onclick="answerTrue()">
+                <input id="" class="form-check-input checked" type="radio" name="True" onclick="answer('True')">
                 <h4>True</h4>
             </div>
             <div class="form-check">
-                <input id="" class="form-check-input" type="radio" name="False" value="false" onclick="answerFalse()">
+                <input id="" class="form-check-input checked" type="radio" name="False" onclick="answer('False')">
                 <h4>False</h4>
             </div>
         </form>`;
-
-    document.getElementById(scoreCategory).classList.remove("bg-success");
-    document.getElementById(scoreCategory).classList.add("bg-secondary"); 
-    document.getElementById(scoreCategory).classList.remove("on");
-    document.getElementById(scoreCategory).classList.add("off"); 
+    $(`#${scoreCategory}`).removeClass("bg-success on").addClass("bg-secondary off");
 }
 
 function _clear(){
-    for(let i = 1; i<=3; i++){
-        document.getElementById(i+"00geography").innerHTML = `<h2> ${i}00 </h2>`;
-        document.getElementById(i+"00geography").classList.remove("bg-secondary");
-        document.getElementById(i+"00geography").classList.add("bg-success");
-        document.getElementById(i+"00geography").classList.remove("off");
-        document.getElementById(i+"00geography").classList.add("on"); 
 
-        document.getElementById(i+"00celebrities").innerHTML = `<h2> ${i}00 </h2>`;
-        document.getElementById(i+"00celebrities").classList.remove("bg-secondary");
-        document.getElementById(i+"00celebrities").classList.add("bg-success");
-        document.getElementById(i+"00celebrities").classList.remove("off");
-        document.getElementById(i+"00celebrities").classList.add("on"); 
-
-        document.getElementById(i+"00vehicles").innerHTML = `<h2> ${i}00 </h2>`;
-        document.getElementById(i+"00vehicles").classList.remove("bg-secondary");
-        document.getElementById(i+"00vehicles").classList.add("bg-success");
-        document.getElementById(i+"00vehicles").classList.remove("off");
-        document.getElementById(i+"00vehicles").classList.add("on"); 
-
-        document.getElementById(i+"00science").innerHTML = `<h2> ${i}00 </h2>`;
-        document.getElementById(i+"00science").classList.remove("bg-secondary");
-        document.getElementById(i+"00science").classList.add("bg-success");
-        document.getElementById(i+"00science").classList.remove("off");
-        document.getElementById(i+"00science").classList.add("on"); 
+    for(let ptValue = 1; ptValue <= 3; ptValue++){
+        $(`.label${ptValue}00`).html(`<h2>${ptValue}00</h2>`);
+        $(`.label${ptValue}00`).removeClass("bg-secondary off").addClass("bg-success on");
     }
+
     countDown = 0;
     document.getElementById("alert").innerHTML = `<h2>Let the TRIVIA begin!!!</h2>`;
     allowClick = true;
